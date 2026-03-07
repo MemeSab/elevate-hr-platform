@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Playback | Elevate HR</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/courses.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body class="playback-body">
+    
+    <!-- Minimal Navigation for Playback -->
+    <nav class="navbar scrolled" style="padding: 1rem 5%;">
+        <div style="display: flex; align-items: center; gap: 1rem;">
+            <a href="courses.html" class="back-btn">&larr; Back to Catalog</a>
+            <div class="divider"></div>
+            <span class="course-title-nav">Fostering Remote Culture</span>
+        </div>
+        <a href="index.html" class="navbar-brand" style="font-size: 1.2rem;">Elevate<span style="color: var(--primary-accent)">HR</span></a>
+    </nav>
+
+    <main class="playback-layout">
+        <!-- Main Video Area -->
+        <div class="video-section">
+            <div class="video-wrapper">
+                <!-- Video Placeholder -->
+                <div class="video-player" style="background-image: url('assets/thumb_culture.png'); background-size: cover; background-position: center;">
+                    <div class="placeholder-poster" style="background: rgba(0,0,0,0.5);">
+                        <div class="play-button-large">▶</div>
+                        <h2>Lesson 1: Introduction to Remote Dynamics</h2>
+                    </div>
+                    <!-- Custom Video Controls Placeholder -->
+                    <div class="video-controls">
+                        <span class="control-icon">▶</span>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 30%;"></div>
+                        </div>
+                        <span class="time">03:45 / 12:30</span>
+                        <span class="control-icon">⛶</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="course-details">
+                <div class="details-header">
+                    <h1>Lesson 1: Introduction to Remote Dynamics</h1>
+                    <button class="btn-primary btn-sm">Complete & Continue</button>
+                </div>
+                <div class="instructor">
+                    <div class="avatar" style="background-image: url('assets/instructor.png'); background-size: cover; background-position: center;"></div>
+                    <div>
+                        <strong>Dr. Sarah Jenkins</strong>
+                        <p class="text-sm">Chief HR Strategist</p>
+                    </div>
+                </div>
+                <div class="description">
+                    <p>In this introductory lesson, we cover the foundational shifts required when transitioning a traditional workforce into a distributed model. You will learn about asynchronous communication, trust building, and digital empathy.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Syllabus Sidebar -->
+        <aside class="syllabus-sidebar glass">
+            <h3>Course Content</h3>
+            <div class="progress-container" style="margin-bottom: 1.5rem;">
+                <div class="progress-text">
+                    <span>12% Completed</span>
+                    <span>1/8 Lessons</span>
+                </div>
+                <div class="progress-bar-bg">
+                    <div class="progress-bar-fill" style="width: 12%;"></div>
+                </div>
+            </div>
+
+            <ul class="lesson-list">
+                <li class="lesson-item active">
+                    <span class="lesson-status completed">✓</span>
+                    <div class="lesson-info">
+                        <h4>1. Introduction to Remote Dynamics</h4>
+                        <span>12:30</span>
+                    </div>
+                </li>
+                <li class="lesson-item playing">
+                    <span class="lesson-status">▶</span>
+                    <div class="lesson-info">
+                        <h4>2. Asynchronous Communication</h4>
+                        <span>18:45</span>
+                    </div>
+                </li>
+                <li class="lesson-item">
+                    <span class="lesson-status lock">🔒</span>
+                    <div class="lesson-info">
+                        <h4>3. Building Trust Wirelessly</h4>
+                        <span>22:10</span>
+                    </div>
+                </li>
+                <li class="lesson-item">
+                    <span class="lesson-status lock">🔒</span>
+                    <div class="lesson-info">
+                        <h4>4. Tools and Tech Stack</h4>
+                        <span>15:20</span>
+                    </div>
+                </li>
+                <li class="lesson-item">
+                    <span class="lesson-status lock">🔒</span>
+                    <div class="lesson-info">
+                        <h4>5. Remote Performance Reviews</h4>
+                        <span>24:00</span>
+                    </div>
+                </li>
+            </ul>
+        </aside>
+    </main>
+
+</body>
+</html>
