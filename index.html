@@ -20,8 +20,15 @@
     
     <!-- Navigation -->
     <nav class="navbar" id="navbar">
-        <a href="index.html" class="navbar-brand">Elevate<span style="color: var(--primary-accent)">HR</span></a>
-        <ul class="nav-links">
+        <div class="nav-header">
+            <a href="index.html" class="navbar-brand">Elevate<span style="color: var(--primary-accent)">HR</span></a>
+            <div class="menu-toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+        <ul class="nav-links" id="nav-links">
             <li><a href="index.html" class="nav-link active">Home</a></li>
             <li><a href="#services" class="nav-link">Services</a></li>
             <li><a href="courses.html" class="nav-link">Video Courses</a></li>
@@ -55,26 +62,46 @@
                 <h2>Our Advisory Services</h2>
                 <p>Expert consulting to navigate systemic complexity and drive transformational change.</p>
             </div>
-            <div class="services-grid">
-                <div class="card glass service-card">
-                    <div class="card-icon">🧭</div>
-                    <h3>Strategic OD & Design</h3>
-                    <p>Full-scale organizational health checks, structural design, and transformational change management for complex systems.</p>
+            <div class="services-bento">
+                <div class="bento-item" style="background-image: url('https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=1200&auto=format&fit=crop');">
+                    <div class="bento-overlay"></div>
+                    <div class="bento-content">
+                        <div class="bento-icon">🧭</div>
+                        <h3>Strategic OD & Design</h3>
+                        <p>Full-scale organizational health checks, structural design, and transformational change management.</p>
+                    </div>
                 </div>
-                <div class="card glass service-card">
-                    <div class="card-icon">🤝</div>
-                    <h3>Executive Coaching</h3>
-                    <p>Certified, high-impact coaching dedicated to supporting senior leaders through personal development and organizational shifts.</p>
+                <div class="bento-item" style="background-image: url('https://images.unsplash.com/photo-1517048676732-d65bc937f952?q=80&w=1200&auto=format&fit=crop');">
+                    <div class="bento-overlay"></div>
+                    <div class="bento-content">
+                        <div class="bento-icon">🤝</div>
+                        <h3>Executive Coaching</h3>
+                        <p>High-impact coaching dedicated to supporting senior leaders through organizational shifts.</p>
+                    </div>
                 </div>
-                <div class="card glass service-card">
-                    <div class="card-icon">🌈</div>
-                    <h3>Inclusive Culture & EDI</h3>
-                    <p>Building psychologically safe, inclusive environments and delivering comprehensive equality, diversity, and belonging strategies.</p>
+                <div class="bento-item" style="background-image: url('https://images.unsplash.com/photo-1531482615713-2afd69097998?q=80&w=1000&auto=format&fit=crop');">
+                    <div class="bento-overlay"></div>
+                    <div class="bento-content">
+                        <div class="bento-icon">🌈</div>
+                        <h3>Inclusive Culture & EDI</h3>
+                        <p>Delivering comprehensive equality, diversity, and belonging strategies for modern teams.</p>
+                    </div>
                 </div>
-                <div class="card glass service-card">
-                    <div class="card-icon">🎓</div>
-                    <h3>Leadership Development</h3>
-                    <p>Bespoke training programmes focusing on contemporary leadership, future-ready skills, and team effectiveness.</p>
+                <div class="bento-item" style="background-image: url('https://images.unsplash.com/photo-1553877522-43269d4ea984?q=80&w=1000&auto=format&fit=crop');">
+                    <div class="bento-overlay"></div>
+                    <div class="bento-content">
+                        <div class="bento-icon">🎓</div>
+                        <h3>Leadership Development</h3>
+                        <p>Training programmes focusing on contemporary leadership and future-ready skills.</p>
+                    </div>
+                </div>
+                <div class="bento-item" style="background-image: url('https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=1000&auto=format&fit=crop');">
+                    <div class="bento-overlay"></div>
+                    <div class="bento-content">
+                        <div class="bento-icon">💡</div>
+                        <h3>Team Effectiveness</h3>
+                        <p>Nurturing environments that empower cross-functional teams and drive psychological safety.</p>
+                    </div>
                 </div>
             </div>
         </section>
@@ -270,6 +297,25 @@
                 navbar.classList.remove('scrolled');
             }
         });
+
+        // Mobile Menu Toggle
+        const mobileMenu = document.getElementById('mobile-menu');
+        const navLinks = document.getElementById('nav-links');
+        
+        if (mobileMenu) {
+            mobileMenu.addEventListener('click', () => {
+                mobileMenu.classList.toggle('active');
+                navLinks.classList.toggle('active');
+            });
+            
+            // Close menu when clicking a link
+            navLinks.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.remove('active');
+                    navLinks.classList.remove('active');
+                });
+            });
+        }
 
         // Contact Form Handling
         const contactForm = document.getElementById('contact-form');

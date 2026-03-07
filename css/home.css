@@ -154,33 +154,83 @@
   border-color: rgba(255, 255, 255, 0.1);
 }
 
-/* Services */
-.services-grid {
+/* Services Bento Grid */
+.services-bento {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(6, 1fr);
   gap: var(--spacing-lg);
 }
 
-.service-card .card-icon {
-  font-size: 2.5rem;
-  margin-bottom: var(--spacing-md);
-  height: 60px;
-  width: 60px;
+.bento-item {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  min-height: 340px;
+  background-size: cover;
+  background-position: center;
+  transition: transform var(--transition-med), box-shadow var(--transition-med);
+}
+
+.bento-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+}
+
+.bento-overlay {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: linear-gradient(to bottom, rgba(13,17,23,0.1) 0%, rgba(13,17,23,0.85) 60%, rgba(13,17,23,0.98) 100%);
+  z-index: 1;
+  transition: opacity var(--transition-fast);
+}
+
+.bento-item:hover .bento-overlay {
+  background: linear-gradient(to bottom, rgba(13,17,23,0.3) 0%, rgba(13,17,23,0.92) 60%, rgba(17,24,39,0.98) 100%);
+}
+
+.bento-content {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  padding: var(--spacing-lg);
+  z-index: 2;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(255,255,255,0.05);
+  flex-direction: column;
+  gap: var(--spacing-xs);
+}
+
+.bento-icon {
+  font-size: 2rem;
+  margin-bottom: var(--spacing-xs);
+  background: rgba(255,255,255,0.15);
+  padding: 12px;
   border-radius: 12px;
+  width: max-content;
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,0.1);
+  line-height: 1;
 }
 
-.service-card h3 {
+.bento-content h3 {
+  color: white;
   font-size: 1.5rem;
-  margin-bottom: var(--spacing-sm);
+  margin-bottom: 0px;
+  font-weight: 700;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.6);
 }
 
-.service-card p {
-  color: var(--text-secondary);
+.bento-content p {
+  color: rgba(255,255,255,0.9);
+  font-size: 1.05rem;
+  line-height: 1.5;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.8);
 }
+
+/* Span configurations for 6-col balanced grid */
+.bento-item:nth-child(1) { grid-column: span 3; }
+.bento-item:nth-child(2) { grid-column: span 3; }
+.bento-item:nth-child(3) { grid-column: span 2; }
+.bento-item:nth-child(4) { grid-column: span 2; }
+.bento-item:nth-child(5) { grid-column: span 2; }
 
 /* Courses */
 .courses-grid {
