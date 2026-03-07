@@ -28,19 +28,33 @@
         <!-- Main Video Area -->
         <div class="video-section">
             <div class="video-wrapper">
-                <!-- Video Placeholder -->
-                <div class="video-player" style="background-image: url('assets/thumb_culture.png'); background-size: cover; background-position: center;">
-                    <div class="placeholder-poster" style="background: rgba(0,0,0,0.5);">
-                        <div class="play-button-large">▶</div>
-                        <h2>Lesson 1: Introduction to Remote Dynamics</h2>
+                <div class="video-player" id="video-container" style="background-image: url('assets/thumb_culture.png'); background-size: cover; background-position: center;">
+                    <video id="course-video" src="https://storage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4" style="width: 100%; height: 100%; object-fit: cover; display: none;" playsinline></video>
+                    
+                    <div class="placeholder-poster" id="video-poster" style="background: rgba(0,0,0,0.5);">
+                        <div class="play-button-large" id="play-btn">▶</div>
+                        <h2>Lesson 1: Introduction to Remote Dynamics (Preview)</h2>
                     </div>
-                    <!-- Custom Video Controls Placeholder -->
-                    <div class="video-controls">
-                        <span class="control-icon">▶</span>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 30%;"></div>
+
+                    <!-- Auth Overlay Paywall -->
+                    <div id="auth-overlay" class="auth-overlay glass" style="display: none;">
+                        <div class="auth-content">
+                            <h3>Preview Ended</h3>
+                            <p>Unlock the full masterclass and access all HR resources by creating a free account.</p>
+                            <div class="auth-actions">
+                                <a href="login.html" class="btn-primary">Create Account</a>
+                                <a href="login.html" class="btn-secondary">Log In</a>
+                            </div>
                         </div>
-                        <span class="time">03:45 / 12:30</span>
+                    </div>
+                    
+                    <!-- Custom Video Controls Placeholder -->
+                    <div class="video-controls" id="video-controls" style="display: none;">
+                        <span class="control-icon" id="bottom-play-btn">⏸</span>
+                        <div class="progress-bar">
+                            <div class="progress" id="progress-indicator" style="width: 0%;"></div>
+                        </div>
+                        <span class="time" id="time-display">00:00 / 00:15</span>
                         <span class="control-icon">⛶</span>
                     </div>
                 </div>
@@ -117,5 +131,65 @@
         </aside>
     </main>
 
+    <script>
+        const video = document.getElementById('course-video');
+        const playBtn = document.getElementById('play-btn');
+        const poster = document.getElementById('video-poster');
+        const videoContainer = document.getElementById('video-container');
+        const controls = document.getElementById('video-controls');
+        const authOverlay = document.getElementById('auth-overlay');
+        const bottomPlayBtn = document.getElementById('bottom-play-btn');
+        const progressIndicator = document.getElementById('progress-indicator');
+        const timeDisplay = document.getElementById('time-display');
+        
+        const PREVIEW_LIMIT_SECONDS = 15;
+        let previewEnded = false;
+
+        function formatTime(seconds) {
+            const m = Math.floor(seconds / 60).toString().padStart(2, '0');
+            const s = Math.floor(seconds % 60).toString().padStart(2, '0');
+            return `${m}:${s}`;
+        }
+
+        playBtn.addEventListener('click', () => {
+            // Hide poster, show video and controls
+            poster.style.display = 'none';
+            videoContainer.style.backgroundImage = 'none';
+            video.style.display = 'block';
+            controls.style.display = 'flex';
+            video.play();
+        });
+
+        bottomPlayBtn.addEventListener('click', () => {
+            if (previewEnded) return;
+            if (video.paused) {
+                video.play();
+                bottomPlayBtn.textContent = '⏸';
+            } else {
+                video.pause();
+                bottomPlayBtn.textContent = '▶';
+            }
+        });
+
+        video.addEventListener('timeupdate', () => {
+            if (previewEnded) return;
+
+            // Update progress bar
+            const progress = (video.currentTime / PREVIEW_LIMIT_SECONDS) * 100;
+            progressIndicator.style.width = `${Math.min(progress, 100)}%`;
+            timeDisplay.textContent = `${formatTime(video.currentTime)} / 00:${PREVIEW_LIMIT_SECONDS}`;
+
+            // Trigger paywall at 15 seconds
+            if (video.currentTime >= PREVIEW_LIMIT_SECONDS) {
+                video.pause();
+                previewEnded = true;
+                
+                // Show paywall
+                controls.style.display = 'none';
+                authOverlay.style.display = 'flex';
+                authOverlay.style.animation = 'fadeUpAnim 0.5s forwards';
+            }
+        });
+    </script>
 </body>
 </html>

@@ -321,3 +321,50 @@
   font-size: 0.75rem;
   color: var(--text-secondary);
 }
+
+/* Auth Paywall Overlay */
+.auth-overlay {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(13, 17, 23, 0.85);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 20;
+}
+
+.auth-content {
+  text-align: center;
+  padding: var(--spacing-xl);
+  border-radius: 16px;
+  max-width: 500px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+}
+
+.auth-content h3 {
+  font-size: 2rem;
+  margin-bottom: var(--spacing-sm);
+  color: var(--primary-accent);
+}
+
+.auth-content p {
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+  margin-bottom: var(--spacing-lg);
+}
+
+.auth-actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+@media screen and (min-width: 480px) {
+  .auth-actions {
+    flex-direction: row;
+    justify-content: center;
+  }
+}
