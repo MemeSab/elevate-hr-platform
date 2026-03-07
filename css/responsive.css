@@ -25,6 +25,17 @@
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   }
   
+  .insights-bento {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .insights-bento .bento-item:nth-child(n) {
+    grid-column: span 1;
+  }
+  
+  .insights-bento .bento-item:nth-child(1) { grid-column: span 2; }
+  .insights-bento .bento-item:nth-child(4) { grid-column: span 2; }
+  
   .playback-layout {
     flex-direction: column;
     overflow-y: auto;
@@ -63,11 +74,12 @@
     text-align: left;
   }
   
-  .services-bento {
+  .services-bento, .insights-bento {
     grid-template-columns: 1fr;
   }
   
-  .services-bento .bento-item:nth-child(n) {
+  .services-bento .bento-item:nth-child(n),
+  .insights-bento .bento-item:nth-child(n) {
     grid-column: span 1;
   }
 }
