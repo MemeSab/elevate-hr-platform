@@ -1,19 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Course Playback | Elevate HR</title>
+    <title>Course Playback | Intelligent OD</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;600;700;800&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/courses.css">
     <link rel="stylesheet" href="css/animations.css">
     <link rel="stylesheet" href="css/responsive.css">
 </head>
+
 <body class="playback-body">
-    
+
     <!-- Minimal Navigation for Playback -->
     <nav class="navbar scrolled" style="padding: 1rem 5%;">
         <div style="display: flex; align-items: center; gap: 1rem;">
@@ -21,16 +25,20 @@
             <div class="divider"></div>
             <span class="course-title-nav">Fostering Remote Culture</span>
         </div>
-        <a href="index.html" class="navbar-brand" style="font-size: 1.2rem;">Elevate<span style="color: var(--primary-accent)">HR</span></a>
+        <a href="index.html" class="navbar-brand" style="font-size: 1.2rem;"><img src="images/about-logo.jpg"
+                alt="Intelligent OD Logo" style="height: 35px; width: auto; display: block;"></a>
     </nav>
 
     <main class="playback-layout">
         <!-- Main Video Area -->
         <div class="video-section">
             <div class="video-wrapper">
-                <div class="video-player" id="video-container" style="background-image: url('assets/thumb_culture.png'); background-size: cover; background-position: center;">
-                    <video id="course-video" src="https://storage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4" style="width: 100%; height: 100%; object-fit: cover; display: none;" playsinline></video>
-                    
+                <div class="video-player" id="video-container"
+                    style="background-image: url('assets/thumb_culture.png'); background-size: cover; background-position: center;">
+                    <video id="course-video"
+                        src="https://storage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4"
+                        style="width: 100%; height: 100%; object-fit: cover; display: none;" playsinline></video>
+
                     <div class="placeholder-poster" id="video-poster" style="background: rgba(0,0,0,0.5);">
                         <div class="play-button-large" id="play-btn">▶</div>
                         <h2>Lesson 1: Introduction to Remote Dynamics (Preview)</h2>
@@ -47,7 +55,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <!-- Custom Video Controls Placeholder -->
                     <div class="video-controls" id="video-controls" style="display: none;">
                         <span class="control-icon" id="bottom-play-btn">⏸</span>
@@ -59,21 +67,25 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="course-details">
                 <div class="details-header">
                     <h1>Lesson 1: Introduction to Remote Dynamics</h1>
                     <button class="btn-primary btn-sm">Complete & Continue</button>
                 </div>
                 <div class="instructor">
-                    <div class="avatar" style="background-image: url('assets/instructor.png'); background-size: cover; background-position: center;"></div>
+                    <div class="avatar"
+                        style="background-image: url('assets/instructor.png'); background-size: cover; background-position: center;">
+                    </div>
                     <div>
                         <strong>Dr. Sarah Jenkins</strong>
                         <p class="text-sm">Chief HR Strategist</p>
                     </div>
                 </div>
                 <div class="description">
-                    <p>In this introductory lesson, we cover the foundational shifts required when transitioning a traditional workforce into a distributed model. You will learn about asynchronous communication, trust building, and digital empathy.</p>
+                    <p>In this introductory lesson, we cover the foundational shifts required when transitioning a
+                        traditional workforce into a distributed model. You will learn about asynchronous communication,
+                        trust building, and digital empathy.</p>
                 </div>
             </div>
         </div>
@@ -141,7 +153,7 @@
         const bottomPlayBtn = document.getElementById('bottom-play-btn');
         const progressIndicator = document.getElementById('progress-indicator');
         const timeDisplay = document.getElementById('time-display');
-        
+
         const PREVIEW_LIMIT_SECONDS = 15;
         let previewEnded = false;
 
@@ -183,7 +195,7 @@
             if (video.currentTime >= PREVIEW_LIMIT_SECONDS) {
                 video.pause();
                 previewEnded = true;
-                
+
                 // Show paywall
                 controls.style.display = 'none';
                 authOverlay.style.display = 'flex';
@@ -191,5 +203,8 @@
             }
         });
     </script>
+    <!-- Firebase Core & Client Config (Module required for modern Firebase SDK) -->
+    <script type="module" src="js/firebaseClient.js"></script>
 </body>
+
 </html>

@@ -1,15 +1,25 @@
 :root {
-  /* Color Palette - Premium Dark Theme */
-  --bg-color: #0d1117;
-  --bg-surface: #161b22;
-  --bg-surface-glass: rgba(22, 27, 34, 0.75);
-  --text-primary: #f0f6fc;
-  --text-secondary: #8b949e;
-  --text-muted: #484f58;
-  --primary-accent: #58a6ff;
-  --primary-accent-hover: #3182ce;
-  --border-color: #30363d;
-  
+  /* Color Palette - Client Brand Theme */
+  --bg-color: #FFFFFF;
+  --bg-surface: #FFFFFF;
+  --bg-surface-glass: rgba(255, 255, 255, 0.95);
+  --text-primary: #000000;
+  --text-secondary: #0B192C;
+  /* Navy */
+  --text-muted: #718096;
+  --primary-accent: #0B192C;
+  /* Navy */
+  --primary-accent-hover: #43C654;
+  /* Grass Green */
+  --border-color: #E6E6E6;
+  /* Light Grey */
+
+  /* Brand Accent Colors */
+  --accent-cyan: #80CFF2;
+  --accent-peach: #EAA082;
+  --accent-pink: #DF93D3;
+  --accent-green: #A1D595;
+
   /* Typography */
   --font-family: 'Inter', system-ui, -apple-system, sans-serif;
   --heading-font: 'Outfit', 'Inter', system-ui, sans-serif;
@@ -24,10 +34,10 @@
   /* Transitions */
   --transition-fast: 0.2s ease;
   --transition-med: 0.3s ease;
-  
+
   /* Shadows */
-  --shadow-subtle: 0 4px 6px rgba(0, 0, 0, 0.1);
-  --shadow-glow: 0 0 15px rgba(88, 166, 255, 0.4);
+  --shadow-subtle: 0 4px 15px rgba(0, 0, 0, 0.05);
+  --shadow-glow: 0 0 15px rgba(11, 25, 44, 0.15);
 }
 
 * {
@@ -50,7 +60,12 @@ a {
   transition: color var(--transition-fast);
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--heading-font);
   font-weight: 700;
   line-height: 1.2;
@@ -110,7 +125,8 @@ ul {
   position: relative;
 }
 
-.nav-link:hover, .nav-link.active {
+.nav-link:hover,
+.nav-link.active {
   color: var(--primary-accent);
 }
 
@@ -125,7 +141,8 @@ ul {
   transition: width var(--transition-med);
 }
 
-.nav-link:hover::after, .nav-link.active::after {
+.nav-link:hover::after,
+.nav-link.active::after {
   width: 100%;
 }
 

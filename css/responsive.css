@@ -5,82 +5,75 @@
   .hero-title {
     font-size: 3rem;
   }
-  
+
   .services-bento {
     grid-template-columns: repeat(2, 1fr);
   }
-  
-  /* Top two items stack one by one, next three form a row, etc. Wait, keeping it balanced: */
-  .bento-item:nth-child(n) { grid-column: span 2; } /* Gives each a full width on narrow-tablet if we want, or span 1 for 2-col */
-  
-  .services-bento .bento-item:nth-child(n) {
-    grid-column: span 1; 
+
+  /* Reset spans for 2 columns */
+  .services-bento .bento-item {
+    grid-column: span 1 !important;
   }
-  
-  .services-bento .bento-item:nth-child(5) {
-    grid-column: span 2; /* last one spans full width to balance 5 items in a 2-col grid */
+
+  /* Flagship & Anti-Racist can span full width to fit their content */
+  .services-bento .bento-item:nth-child(6),
+  .services-bento .bento-item:nth-child(7) {
+    grid-column: span 2 !important;
   }
 
   .courses-grid {
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   }
-  
+
   .insights-bento {
     grid-template-columns: repeat(2, 1fr);
   }
-  
-  .insights-bento .bento-item:nth-child(n) {
-    grid-column: span 1;
+
+  .insights-bento .bento-item {
+    grid-column: span 1 !important;
   }
-  
-  .insights-bento .bento-item:nth-child(1) { grid-column: span 2; }
-  .insights-bento .bento-item:nth-child(4) { grid-column: span 2; }
-  
+
+  .insights-bento .bento-item:nth-child(1),
+  .insights-bento .bento-item:nth-child(4) {
+    grid-column: span 2 !important;
+  }
+
   .playback-layout {
     flex-direction: column;
     overflow-y: auto;
   }
-  
+
   .syllabus-sidebar {
     width: 100%;
     border-left: none;
     border-top: 1px solid var(--border-color);
   }
-  
+
   .video-section {
     overflow-y: visible;
   }
-  
+
   .course-details {
     margin-top: var(--spacing-md);
   }
-  
+
   .about-content {
     flex-direction: column;
     text-align: center;
   }
-  
+
   .about-image {
     flex: 0 0 auto;
     width: 280px;
     margin: 0 auto;
   }
-  
+
   .founder-avatar::after {
     display: none;
   }
-  
+
   .highlight-text {
     text-align: left;
-  }
-  
-  .services-bento, .insights-bento {
-    grid-template-columns: 1fr;
-  }
-  
-  .services-bento .bento-item:nth-child(n),
-  .insights-bento .bento-item:nth-child(n) {
-    grid-column: span 1;
   }
 }
 
@@ -91,7 +84,7 @@
     flex-direction: column;
     gap: var(--spacing-sm);
   }
-  
+
   .nav-header {
     display: flex;
     justify-content: space-between;
@@ -124,7 +117,7 @@
     padding-top: 1rem;
     animation: fadeUpAnim 0.3s forwards;
   }
-  
+
   .nav-links.active {
     display: flex;
   }
@@ -132,36 +125,47 @@
   .menu-toggle.active .bar:nth-child(1) {
     transform: translateY(8px) rotate(45deg);
   }
-  
+
   .menu-toggle.active .bar:nth-child(2) {
     opacity: 0;
   }
-  
+
   .menu-toggle.active .bar:nth-child(3) {
     transform: translateY(-8px) rotate(-45deg);
   }
-  
+
   .navbar-brand {
     font-size: 1.2rem;
   }
-  
+
+  .services-bento,
+  .insights-bento {
+    grid-template-columns: 1fr;
+  }
+
+  .services-bento .bento-item,
+  .insights-bento .bento-item {
+    grid-column: span 1 !important;
+  }
+
   .hero-title {
     font-size: 2.2rem;
   }
-  
+
   .hero-actions {
     flex-direction: column;
     gap: var(--spacing-sm);
   }
-  
+
   .hero-actions a {
     width: 100%;
   }
-  
-  .section-header h2, .page-header h1 {
+
+  .section-header h2,
+  .page-header h1 {
     font-size: 2rem;
   }
-  
+
   .details-header {
     flex-direction: column;
     gap: var(--spacing-sm);

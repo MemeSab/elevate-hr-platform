@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard | Intelligent OD</title>
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Manage your account, subscriptions, and access the Intelligent OD Learning Hub.">
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;600;700;800&display=swap"
+        rel="stylesheet">
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+</head>
+
+<body>
+
+    <!-- Navigation (always scrolled mode for dashboard) -->
+    <nav class="navbar scrolled" id="navbar">
+        <div class="nav-header">
+            <a href="index.html" class="navbar-brand"><img src="images/about-logo.jpg" alt="Intelligent OD Logo"
+                    style="height: 35px; width: auto; display: block;"></a>
+        </div>
+        <ul class="nav-links" id="nav-links" style="display: flex; align-items: center;">
+            <li><a href="courses.html" class="nav-link">Browse Catalog</a></li>
+            <li><a href="dashboard.html" class="nav-link active">Dashboard</a></li>
+            <li>
+                <div class="user-menu"
+                    style="width: 32px; height: 32px; border-radius: 50%; background: linear-gradient(135deg, var(--primary-accent), #8a2be2); color: white; display: flex; justify-content: center; align-items: center; font-weight: bold; font-size: 0.9rem; margin-left: var(--spacing-md); box-shadow: 0 0 10px rgba(88,166,255,0.5);">
+                    JS
+                </div>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Dashboard Layout -->
+    <div class="dashboard-layout">
+
+        <!-- Sidebar Navigation -->
+        <aside class="dashboard-sidebar">
+            <div class="sidebar-user">
+                <div class="avatar-lg">JS</div>
+                <h3>Jane Smith</h3>
+                <span class="badge">Individual Pro</span>
+                <p style="font-size: 0.8rem; color: var(--text-secondary); margin-top: 5px;">jane.smith@example.com</p>
+            </div>
+
+            <nav class="sidebar-nav">
+                <!-- Learning Hub Tab Group -->
+                <div class="nav-section-title">The Learning Hub</div>
+                <a href="#my-courses" class="nav-item active" data-target="my-courses">
+                    <span style="margin-right: 10px;">▶</span> My Courses
+                </a>
+                <a href="#certificates" class="nav-item" data-target="certificates">
+                    <span style="margin-right: 10px;">★</span> Achievement Gallery
+                </a>
+                <a href="#resources" class="nav-item" data-target="resources">
+                    <span style="margin-right: 10px;">↓</span> Resource Library
+                </a>
+
+                <!-- Account Tab Group -->
+                <div class="nav-section-title">Account & Billing</div>
+                <a href="#profile" class="nav-item" data-target="profile">
+                    <span style="margin-right: 10px;">👤</span> Profile Control
+                </a>
+                <a href="#subscription" class="nav-item" data-target="subscription">
+                    <span style="margin-right: 10px;">💳</span> Subscription Options
+                </a>
+                <a href="#billing" class="nav-item" data-target="billing">
+                    <span style="margin-right: 10px;">📄</span> Billing & Invoices
+                </a>
+                <a href="#security" class="nav-item" data-target="security">
+                    <span style="margin-right: 10px;">🔒</span> Security (2FA)
+                </a>
+
+                <div style="margin-top: auto; padding-top: 20px;">
+                    <button id="toggleEmptyStateBtn" class="btn-primary"
+                        style="width: 100%; font-size: 0.85rem; padding: 0.4rem; background: rgba(255,255,255,0.1); box-shadow: none;">Toggle
+                        Empty States Demo</button>
+                    <a href="login.html" class="nav-item" style="margin-top: 10px; color: #ff6b6b;"><span
+                            style="margin-right: 10px;">⏻</span> Sign Out</a>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="dashboard-content">
+
+            <!-- 1. My Courses Section -->
+            <section id="my-courses" class="content-section active">
+                <div class="section-header">
+                    <h2>My Courses</h2>
+                    <p>Track your progress and pick up right where you left off.</p>
+                </div>
+
+                <!-- Empty State (Hidden Default) -->
+                <div id="courses-empty-state" class="empty-state" style="display: none;">
+                    <div class="empty-state-icon">📚</div>
+                    <h3>Start Your Learning Journey</h3>
+                    <p>You haven't enrolled in any courses yet. Explore our extensive masterclass library to level up
+                        your professional skills.</p>
+                    <a href="courses.html" class="btn-primary" style="display: inline-block;">Browse Course Catalog</a>
+                </div>
+
+                <!-- Populated State -->
+                <div id="courses-filled-state" class="courses-grid-dash">
+
+                    <!-- Course Card: In Progress -->
+                    <div class="course-card-dash">
+                        <div class="course-thumb" style="background-image: url('assets/thumb_culture.png');"></div>
+                        <div class="course-details">
+                            <h3>Fostering Remote Culture</h3>
+                            <p>Strategic approaches to maintaining deep connection and robust productivity across
+                                distributed teams.</p>
+
+                            <div class="progress-container">
+                                <div class="progress-top">
+                                    <span>Progress</span>
+                                    <span style="color: var(--primary-accent); font-weight: 600;">65% Complete</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 65%;"></div>
+                                </div>
+                            </div>
+
+                            <a href="course-details.html" class="btn-primary"
+                                style="text-align: center; display: block; width: 100%;">Resume Course</a>
+                        </div>
+                    </div>
+
+                    <!-- Course Card: Not Started -->
+                    <div class="course-card-dash">
+                        <div class="course-thumb" style="background-image: url('assets/thumb_law.png');"></div>
+                        <div class="course-details">
+                            <h3>Navigating HR Law 2026</h3>
+                            <p>Essential legal updates and compliance frameworks every modern HR manager must deeply
+                                understand.</p>
+
+                            <div class="progress-container">
+                                <div class="progress-top">
+                                    <span>Progress</span>
+                                    <span>0% Complete</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 0%;"></div>
+                                </div>
+                            </div>
+
+                            <a href="course-details.html" class="btn-primary"
+                                style="text-align: center; display: block; width: 100%; background: transparent; border: 1px solid var(--primary-accent); box-shadow: none;">Start
+                                Learning</a>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- 2. Achievement Gallery (Certificates) -->
+            <section id="certificates" class="content-section">
+                <div class="section-header">
+                    <h2>Achievement Gallery</h2>
+                    <p>View, download, and share your earned Certificates of Completion.</p>
+                </div>
+
+                <!-- Empty State (Hidden via Toggle later) -->
+                <div id="certs-empty-state" class="empty-state" style="display: none;">
+                    <div class="empty-state-icon">🏆</div>
+                    <h3>No Certificates Yet</h3>
+                    <p>Complete a course to 100% to earn your officially verified certificate of professional
+                        development.</p>
+                </div>
+
+                <div id="certs-filled-state" class="cert-grid">
+                    <div class="dash-card cert-card">
+                        <div class="cert-icon">🥇</div>
+                        <h3 class="cert-title">Leadership Fundamentals</h3>
+                        <p class="cert-date">Issued: Feb 12, 2026</p>
+                        <button class="btn-primary" style="width: 100%; font-size: 0.85rem; padding: 0.5rem;">Download
+                            PDF</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 3. Resource Library -->
+            <section id="resources" class="content-section">
+                <div class="section-header">
+                    <h2>Resource Library</h2>
+                    <p>Quick-access area for course-related downloads and OD frameworks.</p>
+                </div>
+
+                <!-- Empty State -->
+                <div id="resources-empty-state" class="empty-state" style="display: none;">
+                    <div class="empty-state-icon">🗂️</div>
+                    <h3>Your Library is Empty</h3>
+                    <p>Enroll in premium courses to unlock access to exclusive templates, PDF workbooks, and HR
+                        frameworks.</p>
+                </div>
+
+                <div id="resources-filled-state" class="resource-list">
+                    <div class="resource-item">
+                        <div class="resource-icon">📄</div>
+                        <div class="resource-info">
+                            <h4>Remote Policy Template 2026</h4>
+                            <p>Comprehensive Word document from 'Fostering Remote Culture' course.</p>
+                            <button class="btn-icon">Download .Docx</button>
+                        </div>
+                    </div>
+                    <div class="resource-item">
+                        <div class="resource-icon">📊</div>
+                        <div class="resource-info">
+                            <h4>EDI Assessment Matrix</h4>
+                            <p>An interactive spreadsheet to benchmark global team diversity.</p>
+                            <button class="btn-icon">Download .Xlsx</button>
+                        </div>
+                    </div>
+                    <div class="resource-item">
+                        <div class="resource-icon">📖</div>
+                        <div class="resource-info">
+                            <h4>Conflict Resolution Playbook</h4>
+                            <p>A printable 12-page PDF workbook detailing core mediation steps.</p>
+                            <button class="btn-icon">Download .Pdf</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 4. Profile Control Section -->
+            <section id="profile" class="content-section">
+                <div class="section-header">
+                    <h2>Profile Control</h2>
+                    <p>Update your personal details, professional titles, and avatar.</p>
+                </div>
+
+                <div class="dash-card">
+                    <form onsubmit="event.preventDefault(); showSaveMessage();">
+                        <div
+                            style="display: flex; align-items: center; gap: var(--spacing-md); margin-bottom: var(--spacing-lg);">
+                            <div class="avatar-lg" style="margin: 0;">JS</div>
+                            <div>
+                                <button type="button" class="btn-icon" style="margin-bottom: 0.5rem;">Upload New
+                                    Photo</button>
+                                <p style="font-size: 0.8rem; color: var(--text-secondary);">JPG, GIF or PNG. Max size of
+                                    800K</p>
+                            </div>
+                        </div>
+
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label>First Name</label>
+                                <input type="text" value="Jane">
+                            </div>
+                            <div class="form-group">
+                                <label>Last Name</label>
+                                <input type="text" value="Smith">
+                            </div>
+                            <div class="form-group full-width">
+                                <label>Professional Title</label>
+                                <input type="text" value="Senior HR Business Partner">
+                            </div>
+                            <div class="form-group full-width">
+                                <label>Email Address</label>
+                                <input type="email" value="jane.smith@example.com">
+                            </div>
+                            <div class="form-group">
+                                <label>Timezone</label>
+                                <select>
+                                    <option>GMT (London)</option>
+                                    <option>EST (New York)</option>
+                                    <option>PST (Los Angeles)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div style="margin-top: var(--spacing-lg); text-align: right;">
+                            <span id="save-msg"
+                                style="color: #2ea043; font-weight: 500; font-size: 0.9rem; margin-right: 15px; opacity: 0; transition: opacity var(--transition-med);">Profile
+                                Updated Successfully!</span>
+                            <button type="submit" class="btn-primary">Save Changes</button>
+                        </div>
+                    </form>
+                </div>
+            </section>
+
+            <!-- 5. Subscription Options -->
+            <section id="subscription" class="content-section">
+                <div class="section-header">
+                    <h2>Subscription Tiers</h2>
+                    <p>Manage your current plan or upgrade your learning capacity.</p>
+                </div>
+
+                <div class="dash-card plan-card">
+                    <div class="plan-info">
+                        <h3>Individual Pro <span
+                                style="font-size: 0.9rem; background: rgba(88,166,255,0.2); padding: 2px 8px; border-radius: 12px; font-weight: 600; margin-left: 10px; vertical-align: middle;">CURRENT</span>
+                        </h3>
+                        <p style="color: var(--text-secondary);">Includes full access to the Masterclass video library
+                            and premium downloadable resources.</p>
+                        <div class="plan-price">$49 / month</div>
+                    </div>
+                    <div>
+                        <button class="btn-icon" style="margin-right: 10px;">Cancel Plan</button>
+                        <button class="btn-primary">Change Plan</button>
+                    </div>
+                </div>
+
+                <div style="margin-top: var(--spacing-lg);">
+                    <h3 style="margin-bottom: var(--spacing-md); font-size: 1.2rem;">Available Upgrade Options</h3>
+                    <div class="courses-grid-dash">
+                        <div class="dash-card" style="margin-bottom: 0;">
+                            <h4 style="font-size: 1.2rem; margin-bottom: 0.5rem;">Corporate License</h4>
+                            <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1rem;">Seat
+                                management and analytics for HR teams of 5-50 members.</p>
+                            <div style="font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem;">Contact Us</div>
+                            <button class="btn-primary"
+                                style="width: 100%; background: transparent; border: 1px solid var(--primary-accent); box-shadow: none;">Inquire
+                                Now</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 6. Billing & Invoices Section -->
+            <section id="billing" class="content-section">
+                <div class="section-header">
+                    <h2>Billing Transparency</h2>
+                    <p>Manage payment methods and download past invoices.</p>
+                </div>
+
+                <div class="dash-card">
+                    <h3 style="font-size: 1.1rem; margin-bottom: var(--spacing-sm);">Payment Method</h3>
+                    <div
+                        style="display: flex; align-items: center; justify-content: space-between; padding: var(--spacing-sm) 0; border-bottom: 1px solid var(--border-color); margin-bottom: var(--spacing-md);">
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <div
+                                style="background: white; padding: 2px 5px; border-radius: 4px; color: black; font-weight: 800; font-size: 0.8rem; font-style: italic;">
+                                VISA</div>
+                            <span>Visa ending in **** 4242</span>
+                        </div>
+                        <span style="color: var(--text-secondary); font-size: 0.9rem;">Expires 12/28</span>
+                    </div>
+                    <button class="btn-icon">Update Card Details</button>
+                </div>
+
+                <div class="dash-card">
+                    <h3 style="font-size: 1.1rem; margin-bottom: var(--spacing-sm);">Invoice History</h3>
+                    <div class="invoice-list">
+                        <div class="invoice-item">
+                            <div>
+                                <span style="font-weight: 600; display: block;">INVOICE #00452</span>
+                                <span class="invoice-date">Next Renewal: Apr 12, 2026</span>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 10px;">
+                                <span style="font-weight: 600;">$49.00</span>
+                                <span
+                                    style="font-size: 0.8rem; color: #2ea043; background: rgba(46,160,67,0.1); padding: 2px 6px; border-radius: 4px;">UPCOMING</span>
+                            </div>
+                        </div>
+                        <div class="invoice-item">
+                            <div>
+                                <span style="font-weight: 600; display: block;">INVOICE #00411</span>
+                                <span class="invoice-date">Paid: Mar 12, 2026</span>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 15px;">
+                                <span style="font-weight: 600;">$49.00</span>
+                                <button class="btn-icon">PDF &downarrow;</button>
+                            </div>
+                        </div>
+                        <div class="invoice-item">
+                            <div>
+                                <span style="font-weight: 600; display: block;">INVOICE #00388</span>
+                                <span class="invoice-date">Paid: Feb 12, 2026</span>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 15px;">
+                                <span style="font-weight: 600;">$49.00</span>
+                                <button class="btn-icon">PDF &downarrow;</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 7. Security Section -->
+            <section id="security" class="content-section">
+                <div class="section-header">
+                    <h2>Account Security</h2>
+                    <p>Manage your password and implement Two-Factor Authentication (2FA).</p>
+                </div>
+
+                <div class="dash-card">
+                    <h3 style="font-size: 1.2rem; margin-bottom: var(--spacing-md);">Two-Factor Authentication (2FA)
+                    </h3>
+
+                    <div class="security-status">
+                        <span style="font-size: 1.5rem;">&#10003;</span>
+                        <div>
+                            <span style="font-weight: 600; display: block;">2FA is currently Enabled</span>
+                            <span style="font-size: 0.85rem;">Your account is protected with an extra layer of security
+                                via Authenticator App.</span>
+                        </div>
+                    </div>
+
+                    <button class="btn-primary"
+                        style="background: transparent; border: 1px solid var(--border-color); color: var(--text-primary); box-shadow: none;">Disable
+                        2FA</button>
+                    <button class="btn-icon" style="margin-left: 10px;">Update Authenticator Device</button>
+                </div>
+
+                <div class="dash-card">
+                    <h3 style="font-size: 1.2rem; margin-bottom: var(--spacing-md);">Change Password</h3>
+                    <form onsubmit="event.preventDefault(); showPasswordMsg();">
+                        <div class="form-grid">
+                            <div class="form-group full-width">
+                                <label>Current Password</label>
+                                <input type="password" value="********">
+                            </div>
+                            <div class="form-group">
+                                <label>New Password</label>
+                                <input type="password" placeholder="At least 8 characters">
+                            </div>
+                            <div class="form-group">
+                                <label>Confirm New Password</label>
+                                <input type="password" placeholder="Confirm new password">
+                            </div>
+                        </div>
+                        <div style="margin-top: var(--spacing-md); text-align: left;">
+                            <button type="submit" class="btn-primary">Update Password</button>
+                            <span id="pwd-msg"
+                                style="color: #2ea043; font-weight: 500; font-size: 0.9rem; margin-left: 15px; opacity: 0; transition: opacity var(--transition-med);">Password
+                                changed!</span>
+                        </div>
+                    </form>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- Interface Logic Scripts -->
+    <script>
+        // Tab Navigation Logic
+        const navItems = document.querySelectorAll('.sidebar-nav .nav-item');
+        const sections = document.querySelectorAll('.content-section');
+
+        navItems.forEach(item => {
+            item.addEventListener('click', function (e) {
+                // Prevent default anchor behavior immediately jumping
+                e.preventDefault();
+
+                // Get target ID
+                const targetId = this.getAttribute('data-target');
+                if (!targetId) return;
+
+                // Remove active class from all links and sections
+                navItems.forEach(nav => nav.classList.remove('active'));
+                sections.forEach(sec => sec.classList.remove('active'));
+
+                // Add active to clicked link and target section
+                this.classList.add('active');
+                document.getElementById(targetId).classList.add('active');
+
+                // On mobile, scroll to top of content
+                if (window.innerWidth <= 900) {
+                    window.scrollTo({
+                        top: document.querySelector('.dashboard-content').offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Dummy Logic for Flash Messages
+        function showSaveMessage() {
+            const msg = document.getElementById('save-msg');
+            msg.style.opacity = '1';
+            setTimeout(() => { msg.style.opacity = '0'; }, 3000);
+        }
+
+        function showPasswordMsg() {
+            const msg = document.getElementById('pwd-msg');
+            msg.style.opacity = '1';
+            setTimeout(() => { msg.style.opacity = '0'; }, 3000);
+        }
+
+        // Toggle Empty States Logic for Demo
+        let isEmptyState = false;
+        const toggleBtn = document.getElementById('toggleEmptyStateBtn');
+
+        const coursesEmpty = document.getElementById('courses-empty-state');
+        const coursesFilled = document.getElementById('courses-filled-state');
+
+        const certsEmpty = document.getElementById('certs-empty-state');
+        const certsFilled = document.getElementById('certs-filled-state');
+
+        const resEmpty = document.getElementById('resources-empty-state');
+        const resFilled = document.getElementById('resources-filled-state');
+
+        toggleBtn.addEventListener('click', () => {
+            isEmptyState = !isEmptyState;
+
+            if (isEmptyState) {
+                coursesFilled.style.display = 'none';
+                coursesEmpty.style.display = 'block';
+
+                certsFilled.style.display = 'none';
+                certsEmpty.style.display = 'block';
+
+                resFilled.style.display = 'none';
+                resEmpty.style.display = 'block';
+
+                toggleBtn.style.background = 'rgba(88,166,255,0.2)';
+                toggleBtn.style.color = '#fff';
+            } else {
+                coursesFilled.style.display = 'grid';
+                coursesEmpty.style.display = 'none';
+
+                certsFilled.style.display = 'grid';
+                certsEmpty.style.display = 'none';
+
+                resFilled.style.display = 'grid';
+                resEmpty.style.display = 'none';
+
+                toggleBtn.style.background = 'rgba(255,255,255,0.1)';
+            }
+        });
+    </script>
+
+    <!-- Firebase Core & Client Config (Module required for modern Firebase SDK) -->
+    <script type="module" src="js/firebaseClient.js"></script>
+    <script type="module">
+        import { observeAuthState, handleLogout } from './js/firebaseClient.js';
+
+        // Set up the UI elements we want to dynamically update
+        const userEmailDisplays = document.querySelectorAll('p[style*="jane.smith@example.com"], input[value="jane.smith@example.com"]');
+        const userAvatarDisplays = document.querySelectorAll('.user-menu, .avatar-lg');
+
+        // Setup Auth Guard
+        observeAuthState((user) => {
+            if (user) {
+                // User is signed in, update the UI with their actual email
+                console.log("User is authenticated:", user.email);
+
+                // Update text elements like the sidebar email
+                document.querySelector('.sidebar-user p').textContent = user.email;
+
+                // Update inputs like the profile form
+                document.querySelector('input[type="email"]').value = user.email;
+
+                // Update Avatar Initials (e.g. from testuser@example.com -> TU)
+                let initials = "U";
+                if (user.email) {
+                    initials = user.email.substring(0, 2).toUpperCase();
+                }
+                userAvatarDisplays.forEach(el => el.textContent = initials);
+
+            } else {
+                // User is signed out, kick them back to the login page immediately
+                console.warn("No user detected! Redirecting to login...");
+                window.location.href = 'login.html';
+            }
+        });
+
+        // Setup Logout functionality
+        const signOutBtn = document.querySelector('a[href="login.html"]'); // The Sign Out link in sidebar
+        if (signOutBtn) {
+            signOutBtn.addEventListener('click', async (e) => {
+                e.preventDefault();
+                await handleLogout();
+                // the onAuthStateChanged listener above will automatically catch this and redirect!
+            });
+        }
+    </script>
+</body>
+
+</html>
