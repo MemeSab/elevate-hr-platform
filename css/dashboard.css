@@ -1,13 +1,11 @@
 /* Dashboard Specific Styles */
 :root {
     --sidebar-width: 280px;
-    --bg-dashboard: #040d1a;
-    --glass-border: rgba(255, 255, 255, 0.05);
-    --glass-bg: rgba(22, 27, 34, 0.4);
+    --glass-bg: var(--bg-surface-glass);
 }
 
 body {
-    background-color: var(--bg-dashboard);
+    background-color: #F8FAFC; /* Light gray dashboard background */
     background-image: radial-gradient(circle at 15% 50%, rgba(88, 166, 255, 0.03), transparent 25%),
         radial-gradient(circle at 85% 30%, rgba(88, 166, 255, 0.03), transparent 25%);
 }
@@ -64,17 +62,7 @@ body {
     margin-bottom: var(--spacing-xs);
 }
 
-.badge {
-    display: inline-block;
-    padding: 0.2rem 0.6rem;
-    border-radius: 20px;
-    font-size: 0.75rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    background: rgba(88, 166, 255, 0.1);
-    color: var(--primary-accent);
-    border: 1px solid rgba(88, 166, 255, 0.2);
-}
+
 
 .sidebar-nav {
     display: flex;
@@ -102,7 +90,7 @@ body {
 }
 
 .sidebar-nav a:hover {
-    background: rgba(255, 255, 255, 0.03);
+    background: rgba(0, 0, 0, 0.05);
     color: var(--text-primary);
 }
 
@@ -184,7 +172,7 @@ body {
 
 .form-group input,
 .form-group select {
-    background: rgba(0, 0, 0, 0.2);
+    background: #FFFFFF;
     border: 1px solid var(--border-color);
     padding: 0.8rem 1rem;
     border-radius: 8px;
@@ -205,7 +193,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: linear-gradient(to right, rgba(22, 27, 34, 0.8), rgba(88, 166, 255, 0.05));
+    background: linear-gradient(to right, #FFFFFF, rgba(88, 166, 255, 0.05));
     border-left: 4px solid var(--primary-accent);
 }
 
@@ -233,7 +221,7 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: var(--spacing-md);
-    background: rgba(0, 0, 0, 0.2);
+    background: #FFFFFF;
     border-radius: 8px;
     border: 1px solid var(--border-color);
 }
@@ -335,7 +323,7 @@ body {
 
 .progress-bar {
     height: 6px;
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(0, 0, 0, 0.05);
     border-radius: 3px;
     overflow: hidden;
 }
