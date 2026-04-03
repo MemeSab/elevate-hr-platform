@@ -70,23 +70,14 @@ It allows users to:
 ---
 
 ## 📸 Preview
-<p align="center">
-  <img src="images/desktop-home.png" width="100%" alt="Desktop Homepage" />
-</p>
-<p align="center">
-  <img src="images/mobile-home.png" width="45%" alt="Mobile Homepage" />
-  <img src="images/mobile-menu.png" width="45%" alt="Mobile Menu" />
-</p>
-<p align="center">
-  <img src="images/desktop-about.png" width="100%" alt="Desktop About Page" />
-</p>
+*Include your high-resolution screenshots here once deployed!*
 
 ---
 
 ## 📦 Getting Started
 
 ```bash
-git clone https://github.com/MemeSab/elevate-hr.git
+git clone https://github.com/MemeSab/elevate-hr-platform.git
 cd hr_consultancy
 # Serve locally using your preferred server (e.g., Live Server or Python)
 python3 -m http.server 8000
