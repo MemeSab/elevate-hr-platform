@@ -10,6 +10,7 @@ import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, se
 import { getFirestore, doc, getDoc, setDoc, updateDoc, collection, onSnapshot, query, where } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js";
 import { getStorage, ref, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-storage.js";
 
+import { firebaseConfig } from "./firebaseConfig.js";
 // 1. INITIALIZATION
 /**
  * SECURITY NOTE: 
@@ -21,15 +22,6 @@ import { getStorage, ref, getDownloadURL } from "https://www.gstatic.com/firebas
  * to your specific website domains (e.g., https://memesab.github.io/* and http://localhost/*).
  * This prevents anyone else from using your project quota.
  */
-const firebaseConfig = {
-    apiKey: "AIzaSyDlzBv-J-BfpNrf_8utpmqEM6kgm2tEwXI",
-    authDomain: "elevate-hr-lms.firebaseapp.com",
-    projectId: "elevate-hr-lms",
-    storageBucket: "elevate-hr-lms.firebasestorage.app",
-    messagingSenderId: "199833732949",
-    appId: "1:199833732949:web:4cad7128094e697eb8d1dc",
-    measurementId: "G-4MT96455D0"
-};
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
