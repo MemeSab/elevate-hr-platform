@@ -390,6 +390,19 @@ body.home-page .navbar:not(.scrolled) .menu-toggle .bar {
   grid-column: span 2;
 }
 
+.linkedin-featured {
+  grid-column: span 3 !important;
+  border: 1px solid rgba(80, 207, 242, 0.4) !important;
+  box-shadow: 0 0 30px rgba(80, 207, 242, 0.1) !important;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+}
+
+.linkedin-featured:hover {
+  border-color: rgba(80, 207, 242, 1) !important;
+  box-shadow: 0 0 40px rgba(80, 207, 242, 0.2) !important;
+  transform: translateY(-8px) scale(1.01) !important;
+}
+
 /* Read Link */
 .read-link {
   display: inline-flex;

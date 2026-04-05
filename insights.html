@@ -22,15 +22,16 @@
 
     <!-- Navigation -->
     <nav class="navbar scrolled" id="navbar">
-        <div class="nav-header">
-            <a href="index.html" class="navbar-brand"><img src="images/about-logo.jpg" alt="Intelligent OD Logo"
-                    style="height: 35px; width: auto; display: block;"></a>
-            <div class="menu-toggle" id="mobile-menu">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
+        <div class="nav-container">
+            <div class="nav-header">
+                <a href="index.html" class="navbar-brand"><img src="images/logo-white-transparent.png"
+                        alt="Intelligent OD Logo" id="nav-logo" style="height: 35px; width: auto; display: block;"></a>
+                <div class="menu-toggle" id="mobile-menu">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
             </div>
-        </div>
         <ul class="nav-links" id="nav-links">
             <li><a href="index.html" class="nav-link">Home</a></li>
             <li><a href="about.html" class="nav-link">About</a></li>
@@ -40,7 +41,8 @@
             <li><a href="login.html" class="nav-link" style="color: var(--primary-accent); font-weight: 600;">Log In /
                     Register</a></li>
         </ul>
-        <a href="index.html#contact" class="btn-primary">Get in Touch</a>
+            <a href="index.html#contact" class="btn-primary desktop-only">Get in Touch</a>
+        </div>
     </nav>
 
     <main id="main-content" style="padding-top: 100px;">
@@ -107,18 +109,16 @@
                         <span class="read-link">Read on LinkedIn &rarr;</span>
                     </div>
                 </a>
-                <!-- Article 5 (Placeholder) -->
-                <a href="https://www.linkedin.com/in/kashharoon/" target="_blank" class="bento-item"
+                <!-- Article 5: Featured LinkedIn Card -->
+                <a href="https://www.linkedin.com/in/kashharoon/" target="_blank" class="bento-item linkedin-featured"
                     style="grid-column: span 2; background-image: url('https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=1000&auto=format&fit=crop'); text-decoration: none;">
-                    <div class="bento-overlay"></div>
+                    <div class="bento-overlay" style="background: linear-gradient(to right, rgba(0,0,0,0.95), rgba(0,0,0,0.4));"></div>
                     <div class="bento-content">
                         <span class="category"
-                            style="color: var(--primary-accent); font-weight: 600; font-size: 0.85rem; text-transform: uppercase;">Leadership
-                            Development</span>
-                        <h3>Follow Kash on LinkedIn</h3>
-                        <p>Join the conversation and stay up-to-date with the latest insights, frameworks, and thinking
-                            points on organizational design.</p>
-                        <span class="read-link">Connect Now &rarr;</span>
+                            style="background: #0a66c2 !important; color: white !important; font-weight: 700; border: none; box-shadow: 0 4px 15px rgba(10, 102, 194, 0.4);">CONNECT ON LINKEDIN</span>
+                        <h3 style="font-size: 2.2rem; max-width: 500px;">Join our <span class="gradient-text">Od Network</span></h3>
+                        <p style="max-width: 550px; font-size: 1.1rem;">Join the conversation and stay up-to-date with the latest insights, frameworks, and thinking points on organizational design.</p>
+                        <span class="read-link" style="font-size: 1.1rem; font-weight: 700;">Connect Now &rarr;</span>
                     </div>
                 </a>
             </div>

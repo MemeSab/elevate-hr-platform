@@ -19,36 +19,49 @@
     <link rel="stylesheet" href="css/dashboard.css?v=2">
 </head>
 
-<body>
+<body class="dashboard-page">
 
     <!-- Navigation (always scrolled mode for dashboard) -->
     <nav class="navbar scrolled" id="navbar">
-        <div class="nav-header">
-            <a href="index.html" class="navbar-brand"><img src="images/about-logo.jpg" alt="Intelligent OD Logo"
-                    style="height: 35px; width: auto; display: block;"></a>
+        <div class="nav-container">
+            <div class="nav-header">
+                <button class="mobile-toggle" id="mobile-sidebar-toggle" aria-label="Toggle Sidebar">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </button>
+                <a href="index.html" class="navbar-brand"><img src="images/logo-transparent.png"
+                        alt="Intelligent OD Logo" id="nav-logo" style="height: 35px; width: auto; display: block;"></a>
+            </div>
+            <ul class="nav-links" id="nav-links" style="display: flex; align-items: center;">
+                <li><a href="courses.html" class="nav-link">Browse Catalog</a></li>
+                <li><a href="dashboard.html" class="nav-link active">Dashboard</a></li>
+                <li>
+                    <div class="user-menu" id="user-initials-circle"
+                        style="width: 32px; height: 32px; border-radius: 50%; background: linear-gradient(135deg, var(--primary-accent), #8a2be2); color: white; display: flex; justify-content: center; align-items: center; font-weight: bold; font-size: 0.9rem; margin-left: var(--spacing-md); box-shadow: 0 0 10px rgba(88,166,255,0.5);">
+                        ??
+                    </div>
+                </li>
+            </ul>
         </div>
-        <ul class="nav-links" id="nav-links" style="display: flex; align-items: center;">
-            <li><a href="courses.html" class="nav-link">Browse Catalog</a></li>
-            <li><a href="dashboard.html" class="nav-link active">Dashboard</a></li>
-            <li>
-                <div class="user-menu"
-                    style="width: 32px; height: 32px; border-radius: 50%; background: linear-gradient(135deg, var(--primary-accent), #8a2be2); color: white; display: flex; justify-content: center; align-items: center; font-weight: bold; font-size: 0.9rem; margin-left: var(--spacing-md); box-shadow: 0 0 10px rgba(88,166,255,0.5);">
-                    JS
-                </div>
-            </li>
-        </ul>
     </nav>
 
     <!-- Dashboard Layout -->
     <div class="dashboard-layout">
 
         <!-- Sidebar Navigation -->
-        <aside class="dashboard-sidebar">
-            <div class="sidebar-user">
-                <div class="avatar-lg">JS</div>
-                <h3>Jane Smith</h3>
-                <span class="badge">Individual Pro</span>
-                <p style="font-size: 0.8rem; color: var(--text-secondary); margin-top: 5px;">jane.smith@example.com</p>
+        <aside class="dashboard-sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-user">
+                    <div class="avatar-lg" id="sidebar-avatar">JS</div>
+                    <div class="user-meta-info">
+                        <h3 id="sidebar-name">Jane Smith</h3>
+                        <span class="badge">Individual Pro</span>
+                    </div>
+                </div>
+                <button class="desktop-toggle" id="desktop-sidebar-toggle" aria-label="Collapse Sidebar">
+                    <span class="arrow-icon">◀</span>
+                </button>
             </div>
 
             <nav class="sidebar-nav">
@@ -443,6 +456,32 @@
 
     <!-- Interface Logic Scripts -->
     <script>
+        // Sidebar Toggle Logic
+        const sidebar = document.getElementById('sidebar');
+        const desktopToggle = document.getElementById('desktop-sidebar-toggle');
+        const mobileToggle = document.getElementById('mobile-sidebar-toggle');
+        const overlay = document.getElementById('sidebar-overlay');
+
+        if (desktopToggle) {
+            desktopToggle.addEventListener('click', () => {
+                sidebar.classList.toggle('collapsed');
+            });
+        }
+
+        if (mobileToggle) {
+            mobileToggle.addEventListener('click', () => {
+                sidebar.classList.add('active');
+                overlay.classList.add('active');
+            });
+        }
+
+        if (overlay) {
+            overlay.addEventListener('click', () => {
+                sidebar.classList.remove('active');
+                overlay.classList.remove('active');
+            });
+        }
+
         // Tab Navigation Logic
         const navItems = document.querySelectorAll('.sidebar-nav .nav-item');
         const sections = document.querySelectorAll('.content-section');
@@ -463,6 +502,18 @@
                 // Add active to clicked link and target section
                 this.classList.add('active');
                 document.getElementById(targetId).classList.add('active');
+
+                // On mobile, close sidebar after pick
+                if (window.innerWidth <= 900) {
+                    sidebar.classList.remove('active');
+                    overlay.classList.remove('active');
+                }
+
+                // On mobile, close sidebar after pick
+                if (window.innerWidth <= 900) {
+                    sidebar.classList.remove('active');
+                    overlay.classList.remove('active');
+                }
 
                 // On mobile, scroll to top of content
                 if (window.innerWidth <= 900) {
@@ -533,30 +584,109 @@
     <!-- Firebase Core & Client Config (Module required for modern Firebase SDK) -->
     <script type="module" src="js/firebaseClient.js"></script>
     <script type="module">
-        import { observeAuthState, handleLogout } from './js/firebaseClient.js';
+        import { observeAuthState, handleLogout, getUserProfile } from './js/firebaseClient.js';
 
         // Set up the UI elements we want to dynamically update
         const userEmailDisplays = document.querySelectorAll('p[style*="jane.smith@example.com"], input[value="jane.smith@example.com"]');
         const userAvatarDisplays = document.querySelectorAll('.user-menu, .avatar-lg');
 
         // Setup Auth Guard
-        observeAuthState((user) => {
+        observeAuthState(async (user) => {
             if (user) {
                 // User is signed in, update the UI with their actual email
                 console.log("User is authenticated:", user.email);
 
                 // Update text elements like the sidebar email
-                document.querySelector('.sidebar-user p').textContent = user.email;
+                const sidebarEmail = document.querySelector('.sidebar-user p');
+                if (sidebarEmail) sidebarEmail.textContent = user.email;
 
                 // Update inputs like the profile form
-                document.querySelector('input[type="email"]').value = user.email;
+                const emailInput = document.querySelector('input[type="email"]');
+                if (emailInput) emailInput.value = user.email;
 
-                // Update Avatar Initials (e.g. from testuser@example.com -> TU)
-                let initials = "U";
-                if (user.email) {
-                    initials = user.email.substring(0, 2).toUpperCase();
+                // 1. Fetch Profile Data from Firestore
+                const { data, error } = await getUserProfile(user.uid);
+                if (data && data.fullName) {
+                    // Update Name in Sidebar
+                    const sidebarName = document.querySelector('.sidebar-user h3');
+                    if (sidebarName) sidebarName.textContent = data.fullName;
+
+                    // Update Name in Profile Inputs
+                    const firstNameInput = document.querySelector('input[value="Jane"]');
+                    const lastNameInput = document.querySelector('input[value="Smith"]');
+                    const nameParts = data.fullName.split(' ');
+                    if (firstNameInput) firstNameInput.value = nameParts[0] || "";
+                    if (lastNameInput) lastNameInput.value = nameParts.slice(1).join(' ') || "";
+
+                    // Update Avatar Initials from Name
+                    const initials = nameParts.map(n => n[0]).join('').toUpperCase().substring(0, 2);
+                    userAvatarDisplays.forEach(el => el.textContent = initials);
+                } else {
+                    // Fallback to Email-based initials if no Profile Doc yet
+                    let initials = user.email ? user.email.substring(0, 2).toUpperCase() : "U";
+                    userAvatarDisplays.forEach(el => el.textContent = initials);
                 }
-                userAvatarDisplays.forEach(el => el.textContent = initials);
+
+                // 2. Fetch & Render Course Progress
+                import('./js/firebaseClient.js').then(({ observeUserProgress }) => {
+                    observeUserProgress(user.uid, (progressData) => {
+                        const coursesContainer = document.getElementById('courses-filled-state');
+                        const emptyState = document.getElementById('courses-empty-state');
+                        
+                        if (Object.keys(progressData).length === 0) {
+                            coursesContainer.style.display = 'none';
+                            emptyState.style.display = 'block';
+                            return;
+                        }
+
+                        coursesContainer.style.display = 'grid';
+                        emptyState.style.display = 'none';
+                        coursesContainer.innerHTML = ''; // Fresh render
+
+                        const COURSES = {
+                            "culture-remote": {
+                                title: "Fostering Remote Culture",
+                                desc: "Strategic approaches to maintaining deep connection...",
+                                thumb: "assets/thumb_culture.png"
+                            },
+                            "hr-law-2026": {
+                                title: "Navigating HR Law 2026",
+                                desc: "Essential legal updates and compliance frameworks...",
+                                thumb: "assets/thumb_law.png"
+                            }
+                        };
+
+                        Object.entries(progressData).forEach(([courseId, data]) => {
+                            const course = COURSES[courseId] || { 
+                                title: "Unknown Course", 
+                                desc: "No description available.",
+                                thumb: "assets/hero_bg.png"
+                            };
+                            const percent = data.percentComplete || 0;
+
+                            const card = `
+                                <div class="course-card-dash animate-fade-in">
+                                    <div class="course-thumb" style="background-image: url('${course.thumb}');"></div>
+                                    <div class="course-details">
+                                        <h3>${course.title}</h3>
+                                        <p>${course.desc}</p>
+                                        <div class="progress-container">
+                                            <div class="progress-top">
+                                                <span>Progress</span>
+                                                <span style="color: var(--primary-accent); font-weight: 600;">${percent}% Complete</span>
+                                            </div>
+                                            <div class="progress-bar">
+                                                <div class="progress-fill" style="width: ${percent}%;"></div>
+                                            </div>
+                                        </div>
+                                        <a href="course-details.html?id=${courseId}" class="btn-primary" style="text-align: center; display: block; width: 100%;">Resume Course</a>
+                                    </div>
+                                </div>
+                            `;
+                            coursesContainer.insertAdjacentHTML('beforeend', card);
+                        });
+                    });
+                });
 
             } else {
                 // User is signed out, kick them back to the login page immediately
@@ -575,6 +705,9 @@
             });
         }
     </script>
+
+    <!-- Sidebar Overlay for Mobile -->
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
 </body>
 
 </html>

@@ -7,7 +7,7 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-analytics.js";
 import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, sendSignInLinkToEmail, onAuthStateChanged, GoogleAuthProvider, signInWithPopup, signOut } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-auth.js";
-import { getFirestore, doc, getDoc, setDoc, updateDoc, collection, onSnapshot, query, where } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js";
+import { getFirestore, doc, getDoc, setDoc, updateDoc, collection, onSnapshot, query, where, addDoc } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js";
 import { getStorage, ref, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-storage.js";
 
 import { firebaseConfig } from "./firebaseConfig.js";
@@ -53,11 +53,49 @@ export async function handleEmailPasswordLogin(email, password) {
 export async function handleEmailPasswordSignup(email, password, fullName) {
     try {
         const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-        // You could save fullName to Firestore here
-        return { user: userCredential.user, error: null };
+        const user = userCredential.user;
+
+        // Save fullName to Firestore under users/{uid}
+        await setDoc(doc(db, "users", user.uid), {
+            fullName: fullName,
+            email: email,
+            createdAt: new Date(),
+            tier: 'free' // Default tier
+        });
+
+        return { user: user, error: null };
     } catch (error) {
         return { user: null, error };
     }
+}
+
+export async function getUserProfile(uid) {
+    try {
+        const userDoc = await getDoc(doc(db, "users", uid));
+        if (userDoc.exists()) {
+            return { data: userDoc.data(), error: null };
+        } else {
+            return { data: null, error: "Profile not found" };
+        }
+    } catch (error) {
+        return { data: null, error };
+    }
+}
+
+/**
+ * Real-time listener for user's course progress
+ */
+export function observeUserProgress(uid, callback) {
+    const q = query(collection(db, "users", uid, "courseProgress"));
+    return onSnapshot(q, (snapshot) => {
+        const progress = {};
+        snapshot.forEach((doc) => {
+            progress[doc.id] = doc.data();
+        });
+        callback(progress);
+    }, (error) => {
+        console.error("Error observing progress:", error);
+    });
 }
 
 export async function handleGoogleLogin() {
@@ -192,5 +230,37 @@ export async function getSecureResourceDownload(fileName) {
     } catch (error) {
         console.error("Resource fetch failed", error);
         return null;
+    }
+}
+
+/**
+ * STRIPE CHECKOUT: Official Firebase Extension Integration
+ */
+export async function triggerStripeCheckout(uid, priceId) {
+    try {
+        const sessionRef = collection(db, "customers", uid, "checkout_sessions");
+        const docRef = await addDoc(sessionRef, {
+            price: priceId,
+            success_url: window.location.origin + '/dashboard.html',
+            cancel_url: window.location.origin + '/courses.html',
+        });
+
+        return new Promise((resolve, reject) => {
+            const unsubscribe = onSnapshot(docRef, (snap) => {
+                const data = snap.data();
+                if (data && data.url) {
+                    unsubscribe();
+                    window.location.href = data.url; // Trigger Redirect
+                    resolve(data.url);
+                }
+                if (data && data.error) {
+                    unsubscribe();
+                    reject(new Error(data.error.message));
+                }
+            });
+        });
+    } catch (error) {
+        console.error("Stripe Checkout Error:", error);
+        throw error;
     }
 }

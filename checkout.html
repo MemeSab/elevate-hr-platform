@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preparing Checkout | Intelligent OD</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <style>
+        body {
+            background: #0d1117;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .checkout-loading-card {
+            text-align: center;
+            padding: 3rem;
+            max-width: 400px;
+            width: 85%;
+        }
+
+        .spinner-glow {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            border: 3px solid rgba(80, 207, 242, 0.1);
+            border-top: 3px solid #80CFF2;
+            margin: 0 auto 2rem;
+            animation: spin 1s linear infinite;
+            box-shadow: 0 0 20px rgba(128, 207, 242, 0.2);
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        h1 {
+            font-size: 1.5rem;
+            color: white;
+            margin-bottom: 1rem;
+            letter-spacing: 0.05rem;
+        }
+
+        p {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .cancel-link {
+            margin-top: 2rem;
+            display: block;
+            color: #80CFF2;
+            text-decoration: none;
+            font-size: 0.85rem;
+            opacity: 0.7;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="checkout-loading-card glass">
+        <div class="spinner-glow"></div>
+        <h1>Preparing your access...</h1>
+        <p>We're setting up your secure checkout session with Stripe. You'll be redirected in a moment.</p>
+        <a href="courses.html" class="cancel-link">&larr; Return to Courses</a>
+    </div>
+
+    <!-- Firebase Redirect Logic -->
+    <script type="module">
+        import { observeAuthState, triggerStripeCheckout } from './js/firebaseClient.js';
+
+        // PLACEHOLDER PRICE ID - You can replace this with your actual Stripe Price ID
+        const MASTERCLASS_PRICE_ID = 'price_1QxZ88...'; // Placeholder
+
+        observeAuthState(async (user) => {
+            if (!user) {
+                // Must be logged in to pay
+                window.location.href = 'login.html';
+                return;
+            }
+
+            try {
+                // This function creates the document and handles the final redirect
+                await triggerStripeCheckout(user.uid, MASTERCLASS_PRICE_ID);
+            } catch (error) {
+                console.error("Checkout failed:", error);
+                alert("Something went wrong initializing checkout. Please try again later.");
+                window.location.href = 'courses.html';
+            }
+        });
+    </script>
+</body>
+</html>

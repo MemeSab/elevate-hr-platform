@@ -25,7 +25,7 @@
             <div class="divider"></div>
             <span class="course-title-nav">Fostering Remote Culture</span>
         </div>
-        <a href="index.html" class="navbar-brand" style="font-size: 1.2rem;"><img src="images/about-logo.jpg"
+        <a href="index.html" class="navbar-brand" style="font-size: 1.2rem;"><img src="images/logo-white-transparent.png"
                 alt="Intelligent OD Logo" style="height: 35px; width: auto; display: block;"></a>
     </nav>
 
@@ -143,7 +143,9 @@
         </aside>
     </main>
 
-    <script>
+    <script type="module">
+        import { observeAuthState, checkTierAccess, updateVideoProgress } from './js/firebaseClient.js';
+
         const video = document.getElementById('course-video');
         const playBtn = document.getElementById('play-btn');
         const poster = document.getElementById('video-poster');
@@ -154,8 +156,33 @@
         const progressIndicator = document.getElementById('progress-indicator');
         const timeDisplay = document.getElementById('time-display');
 
-        const PREVIEW_LIMIT_SECONDS = 15;
+        let PREVIEW_LIMIT_SECONDS = 15;
         let previewEnded = false;
+        let isSubscribed = false;
+        let currentUser = null;
+
+        // --- SUB STATE CHECK --- //
+        observeAuthState(async (user) => {
+            currentUser = user;
+            if (user) {
+                // Check if user has active subscription
+                isSubscribed = await checkTierAccess('pro');
+                
+                if (isSubscribed) {
+                    console.log("VIP Access Granted");
+                    PREVIEW_LIMIT_SECONDS = 99999; // Effectively disable limit
+                    authOverlay.style.display = 'none';
+                } else {
+                    // Update paywall for logged-in but non-paid users
+                    authOverlay.querySelector('h3').textContent = "Upgrade to Continue";
+                    authOverlay.querySelector('p').textContent = "You've reached the free preview limit. Unlock the full course collection to continue learning.";
+                    authOverlay.querySelector('.auth-actions').innerHTML = `
+                        <a href="checkout.html" class="btn-primary" style="background: var(--primary-accent); border:none;">Unlock Full Access</a>
+                        <a href="index.html#contact" class="btn-secondary">Contact Support</a>
+                    `;
+                }
+            }
+        });
 
         function formatTime(seconds) {
             const m = Math.floor(seconds / 60).toString().padStart(2, '0');
@@ -164,7 +191,6 @@
         }
 
         playBtn.addEventListener('click', () => {
-            // Hide poster, show video and controls
             poster.style.display = 'none';
             videoContainer.style.backgroundImage = 'none';
             video.style.display = 'block';
@@ -173,7 +199,7 @@
         });
 
         bottomPlayBtn.addEventListener('click', () => {
-            if (previewEnded) return;
+            if (previewEnded && !isSubscribed) return;
             if (video.paused) {
                 video.play();
                 bottomPlayBtn.textContent = '⏸';
@@ -184,27 +210,31 @@
         });
 
         video.addEventListener('timeupdate', () => {
-            if (previewEnded) return;
+            if (previewEnded && !isSubscribed) return;
 
-            // Update progress bar
-            const progress = (video.currentTime / PREVIEW_LIMIT_SECONDS) * 100;
+            // Progress bar logic
+            const totalDuration = isSubscribed ? video.duration : PREVIEW_LIMIT_SECONDS;
+            const progress = (video.currentTime / totalDuration) * 100;
             progressIndicator.style.width = `${Math.min(progress, 100)}%`;
-            timeDisplay.textContent = `${formatTime(video.currentTime)} / 00:${PREVIEW_LIMIT_SECONDS}`;
+            
+            const displayLimit = isSubscribed ? formatTime(video.duration) : "00:" + PREVIEW_LIMIT_SECONDS;
+            timeDisplay.textContent = `${formatTime(video.currentTime)} / ${displayLimit}`;
 
-            // Trigger paywall at 15 seconds
-            if (video.currentTime >= PREVIEW_LIMIT_SECONDS) {
+            // Trigger gating if not subscribed
+            if (!isSubscribed && video.currentTime >= PREVIEW_LIMIT_SECONDS) {
                 video.pause();
                 previewEnded = true;
-
-                // Show paywall
                 controls.style.display = 'none';
                 authOverlay.style.display = 'flex';
                 authOverlay.style.animation = 'fadeUpAnim 0.5s forwards';
             }
+
+            // Record progress if logged in
+            if (currentUser && Math.floor(video.currentTime) % 5 === 0) {
+               updateVideoProgress('culture_masterclass', 'lesson_1', video.currentTime, video.ended);
+            }
         });
     </script>
-    <!-- Firebase Core & Client Config (Module required for modern Firebase SDK) -->
-    <script type="module" src="js/firebaseClient.js"></script>
 </body>
 
 </html>
