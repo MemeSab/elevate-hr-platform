@@ -16,7 +16,7 @@ This is the authoritative knowledge beacon for the Intelligent OD (Elevate) plat
 *   **Backend Ecosystem**: Firebase (Authentication, Cloud Firestore, Firebase Storage).
 *   **Monetization Engine**: Stripe (Checkout Extension & Payments).
 *   **Development Server**: Python HTTP Server (Localhost:8000).
-*   **Environment Strategy**: Local-First development with strict `.js` config key management (ignored by Git tracking).
+*   **Environment Strategy**: Local-First development with authoritative `.js` config key management. All sensitive credentials are isolated in the `.gemini/secrets/` directory (strictly ignored by Git tracking).
 
 ---
 

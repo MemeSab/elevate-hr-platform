@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="css/home.css">
     <link rel="stylesheet" href="css/animations.css">
     <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/newsletter.css">
 </head>
 
 <body class="home-page">
@@ -466,7 +467,31 @@
                 });
             });
         });
-    </script>
+    <!-- Newsletter Modal Overlay -->
+    <div class="newsletter-modal-overlay" id="newsletter-overlay">
+        <div class="newsletter-modal">
+            <button class="newsletter-close" id="newsletter-close" aria-label="Close">×</button>
+            
+            <div id="newsletter-form-container">
+                <h2>Stay Ahead of the Curve</h2>
+                <p>Join the Elevate Inner Circle. Receive curated insights on organizational development, leadership strategies, and exclusive masterclass updates every quarter.</p>
+                <form class="newsletter-form" id="newsletter-form">
+                    <input type="email" class="newsletter-input" id="newsletter-email" placeholder="Email Address" required>
+                    <button type="submit" class="newsletter-submit">Get the Latest Insights</button>
+                    <p class="newsletter-privacy">We respect your privacy. Unsubscribe at any time.</p>
+                </form>
+            </div>
+
+            <div class="newsletter-success" id="newsletter-success-box">
+                <i class="success-icon" style="font-size: 3rem; color: #10b981; margin-bottom: 1rem; display: block;">✓</i>
+                <h3>You're on the list!</h3>
+                <p>Welcome to the circle. Look out for our next update in your inbox.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script type="module" src="js/newsletter.js"></script>
     <script src="js/navbar.js?v=2"></script>
 </body>
 
