@@ -69,9 +69,12 @@ This document is used to track and review the outcome of every major task in the
 
 ---
 
-## 📝 Retrospective: [ELE-13 - Global Navbar Logo Invisibility on Scroll]
+## 📝 Retrospective: [ELE-13 - Global Navbar Logo & Navigation Visibility Resolve]
 **Date Completed:** `2026-04-06`
-* **What was Planned:** Resolve the visibility conflict where the white logo on the dark hero background remained white on the scrolled white sticky header.
-* **What was Done:** Implemented a `filter: brightness(0);` rule specifically for the `.navbar.scrolled .navbar-brand img` selector. 
-* **Outcome:** The branding now programmatically transitions from white (hero) to an authoritative All-Black variant the moment the page background turns white. Verified across all Global Navbars.
+* **What was Planned:** Resolve the visibility conflict where the white logo on the dark hero background remained white on the scrolled white sticky header, and improve "Log In / Register" visibility.
+* **What was Done:** 
+    1. **Dynamic Logo Swap**: Refined the implementation from a CSS filter to a dynamic JavaScript `src` swap in `navbar.js`. On scroll (or sub-page load), the navbar now swaps to the authoritative Black-Box "OD" logo (`logo.png`).
+    2. **Sub-Page Logic**: Implemented the `scrolled-page` body class for "About", "Services", "Courses", and "Insights" to force the white sticky header and black logo on page load, eliminating invisibility conflicts.
+    3. **Branding Sync**: Updated the "Log In / Register" navigation link to use the vibrant Sky Blue (`#38BDF8`) accent. This matches the "Home" active state and provides high-contrast visibility against dark hero backgrounds on load.
+* **Outcome:** The branding now programmatically transitions with 100% fidelity across all pages and initial render states. 
 * **Reference Issue:** [ELE-13](https://linear.app/elevate-od/issue/ELE-13)

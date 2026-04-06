@@ -14,6 +14,7 @@ This document is used to track anything that is not going to plan. Continually u
 | **R-005** | `2026-04-05` | **Expired API Credentials:** App blocked by `auth/api-key-expired` error when attempting test sign-ups. | **High** | Rotated keys in Firebase console and restored the active Project API key to the local config file. | **Resolved** | Team |
 | **R-004** | `TBD` | **Stripe Extension Complexity:** Synchronizing Firebase claims with Stripe webhook latency could lead to users not getting instant access to courses after payment. | **Medium** | Implement a local UI "optimistic update" animation and utilize Firebase `onSnapshot` to trigger access purely upon the document update. | **Open** | Team |
 | **R-006** | `2026-04-05` | **Mobile Menu Failure:** The hamburger menu and overlay links are inconsistent or non-functional on several pages despite logo fixes. | **High** | Layered the menu at 20,000 z-index and standardized the JS listeners. | **✅ Resolved** | UI Dev |
+| **R-007** | `2026-04-06` | **Global Branding Invisibility:** Navbar logo appearing invisible on white scrolled headers or sub-page loads (White-on-White). | **High** | Implemented dynamic JS logo swapping and `scrolled-page` body classes to force branding on load. | **✅ Resolved** | UI Dev |
 
 
 
