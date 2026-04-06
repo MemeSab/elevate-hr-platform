@@ -1,6 +1,13 @@
 # Intelligent OD – Master Project Context
 
-This is the authoritative knowledge beacon for the Intelligent OD (Elevate) platform. It provides a high-fidelity snapshot of the project's identity, technical architecture, and branding standards to ensure continuity in future AI-assisted engineering sessions.
+This is the authoritative knowledge beacon for the Intelligent OD (Elevate) platform. It provides a high-fidelity snapshot of the project's identity, technical architecture, and branding standards.
+
+---
+
+## 🏛️ Project Identity & Stakeholders
+*   **Flagship Client**: Kash Haroon (Strategic Organisational Development & Change Management). 
+*   **Mission**: Transforming organizations through sector expertise, professional growth, and talent management.
+*   **Platform Goal**: Premium HR consultancy services and exclusive video course distribution with a seamless user authentication and monetization experience.
 
 ---
 
