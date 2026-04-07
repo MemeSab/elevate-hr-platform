@@ -11,28 +11,30 @@
     display: none; /* Controlled by JS */
     opacity: 0;
     z-index: 10000;
-    display: flex;
     align-items: center;
     justify-content: center;
     transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .newsletter-modal-overlay.active {
-    display: flex;
-    opacity: 1;
+    display: flex !important;
+    opacity: 1 !important;
 }
 
 .newsletter-modal {
-    background: #ffffff;
+    background: #ffffff !important;
     max-width: 400px;
     width: 90%;
     padding: 2.5rem;
     border-radius: 20px;
     position: relative;
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    z-index: 10001; /* Higher than overlay */
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
     transform: scale(0.9) translateY(20px);
-    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     text-align: center;
+    opacity: 1 !important; /* Ensure content is visible */
+    visibility: visible !important;
 }
 
 .newsletter-modal-overlay.active .newsletter-modal {
