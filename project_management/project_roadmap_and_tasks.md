@@ -121,3 +121,63 @@ This document breaks down the active and upcoming phases of the Elevate (Intelli
   - [x] **Verified:** Mobile navigation uses an off-canvas drawer with no overflow issues.
   - [x] **Verified:** Login branding is crisp and visible (Dark logo on white background).
   - [x] **Verified:** All social login buttons have high contrast (Google/LinkedIn text is visible).
+
+### **Task 3.8: Intelligent OD Brand System & UI Kit (ELE-20)**
+* **Description:** Create a complete brand system and UI component library for a premium leadership consultancy.
+* **Actions:**
+  1. Define strict color palette (Navy, Charcoal, White, Slate, Blue, Gold).
+  2. Implement typography scale (Playfair Display / Inter).
+  3. Build comprehensive UI showcase in `brand-system.html`.
+* **Testing Requirements:**
+  - [x] **Verified:** `brand-system.html` renders all components with 100% brand fidelity.
+  - [x] **Verified:** CSS variables are centrally managed and scalable.
+
+### **Task 3.9: Dusk Akeneo PIM Strategic Roadmap (ELE-21)**
+* **Description:** Build a professional Reveal.js presentation for the Dusk Akeneo PIM implementation.
+* **Actions:**
+  1. Create a 10-slide, dark-mode presentation.
+  2. Implement granular 5-phase breakdown with human-centric strategic insights.
+  3. Integrate live Linear governance document links.
+* **Testing Requirements:**
+  - [x] **Verified:** Presentation reframed for "Dusk" stakeholders with simplified language.
+  - [x] **Verified:** KPI slide includes -70% manual work and -40% launch time metrics.
+
+---
+
+## **Dusk Project: Akeneo PIM Implementation (Milestone Planning)**
+*Strategy Note:* This project is structured into **5 Linear Milestones** to provide total visibility into delivery progress. Each milestone represents a critical logic gate that must be validated before moving to the next stage.
+
+### **Milestone: Phase 1 – Audit**
+*   **[1.1] Data Audit ([ELE-23](https://linear.app/elevate-od/issue/ELE-23))**: 
+    - *Spec:* Map all product data sources (NetSuite/Shopify) and identify 'Sources of Truth'.
+    - *Test:* Confirm 'Price' and 'SKU' match across all audited platforms.
+*   **[1.2] Structure Design**: Define Families, Attributes, and Categorisation.
+*   **[1.3] Role Mapping**: Define approval paths and user responsibilities.
+
+### **Milestone: Phase 2 – Design**
+*   **[2.1] API Setup ([ELE-26](https://linear.app/elevate-od/issue/ELE-26))**: 
+    - *Spec:* Establish secure OAuth2 sync heartbeat between NetSuite and Akeneo.
+    - *Test:* Successfully fetch Attribute lists via API sandbox.
+*   **[2.2] Translation Logic**: Mapping rules for inbound/outbound data flows.
+*   **[2.3] Security Config**: Finalize security permissions.
+
+### **Milestone: Phase 3 – Sync**
+*   **[3.1] Sync Protocol**: Batch import master product lists.
+*   **[3.2] Stress Rules ([ELE-30](https://linear.app/elevate-od/issue/ELE-30))**: 
+    - *Spec:* Merge duplicate SKUs and standardize all units (e.g., grams to kg).
+    - *Test:* Run deduplication on a 100-record sample; verify 0 errors remain.
+*   **[3.3] Integration Check**: Proof-check post-migration record consistency.
+
+### **Milestone: Phase 4 – Migrate**
+*   **[4.1] Legacy Scrub**: Stress test the sync under peak volumes.
+*   **[4.2] Bulk Upload ([ELE-33](https://linear.app/elevate-od/issue/ELE-33))**: 
+    - *Spec:* 30-day workflow validation with core Product Content team.
+    - *Test:* Verify "New Item" appears in Shopify draft within 60s of creation.
+*   **[4.3] Verification**: Final UI refinements before Go-Live.
+
+### **Milestone: Phase 5 – Launch**
+*   **[5.1] SOP Manuals**: Step-by-step guides for user onboarding.
+*   **[5.2] Team Training ([ELE-36](https://linear.app/elevate-od/issue/ELE-36))**: 
+    - *Spec:* Monitor ROI metrics and provide 30-day dedicated on-call support.
+    - *Test:* Log test bug; verify triage within the 2-hour SLA.
+*   **[5.3] Hyper-Care**: Final verification of manual work reduction targets.
